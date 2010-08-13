@@ -14,7 +14,7 @@
               %th Flagged?
           %tbody
             - @images.each_with_index do |image, row|
-              %tr{:class => (row % 2) == 0 ? 'even' : ''}
+              %tr{:id => image.id, :class => (row % 2) == 0 ? 'even' : ''}
                 %td
                   %img{:src => image.image_url, :class => 'preview'}
                 %td= image.flagged

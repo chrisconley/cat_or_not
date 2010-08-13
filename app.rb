@@ -1,6 +1,10 @@
 require 'rubygems'
 require 'sinatra'
 
+get '/' do
+  redirect '/images'
+end
+
 get '/images' do
   @images = Image.all
   haml :index
@@ -22,7 +26,7 @@ end
 
 post '/images/:id/houdini_postbacks' do
   @image = Image.find(params[:id])
-  @image.flagged = params[:houdini_postback][:flagged]
+  @image.flagged = params[:answer][:flagged]
   @image.save!
 end
 
@@ -60,6 +64,5 @@ class Houdini
   end
 
   def self.render_form(object, template)
-    # ...
   end
 end
