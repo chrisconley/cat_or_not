@@ -8,11 +8,15 @@
       .prepend-5.span-14.append-5.last
         %h1 Images
         %table
-          %tr
-            %th Image
-            %th Offensive?
-          - @images.each_with_index do |gamut, row|
-            %tr{:class => (row % 2) == 0 ? 'even' : ''}
-              %td
-                %img{:src => image.image_url, :class => 'preview'}
-              %td= image.flagged
+          %thead
+            %tr
+              %th Image
+              %th Flagged?
+          %tbody
+            - @images.each_with_index do |image, row|
+              %tr{:class => (row % 2) == 0 ? 'even' : ''}
+                %td
+                  %img{:src => image.image_url, :class => 'preview'}
+                %td= image.flagged
+        %p
+          %a{:href => '/images/new'} Create New Image

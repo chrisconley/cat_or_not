@@ -12,9 +12,9 @@ get '/images/new' do
 end
 
 post '/images' do
-  @image = Post.new(params[:image])
+  @image = Image.new(params[:image])
   if @image.save
-    redirect_to '/images'
+    redirect '/images'
   else
     haml :new
   end
@@ -37,7 +37,7 @@ class Image
   property :flagged,       String
   auto_migrate!
 
-  after :create, :moderate_image
+  #after :create, :moderate_image
 
   def moderate_image
     Houdini.send_to_houdini({
