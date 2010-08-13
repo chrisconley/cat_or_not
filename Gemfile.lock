@@ -51,6 +51,7 @@ GEM
       data_objects (= 0.10.2)
     extlib (0.9.15)
     fastercsv (1.5.3)
+    haml (3.0.16)
     json_pure (1.4.6)
     rack (1.2.1)
     sinatra (1.0)
@@ -64,4 +65,5 @@ PLATFORMS
 DEPENDENCIES
   datamapper
   dm-sqlite-adapter
+  haml
   sinatra

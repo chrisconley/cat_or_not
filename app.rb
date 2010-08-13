@@ -27,13 +27,15 @@ post '/images/:id/houdini_postbacks' do
 end
 
 require 'dm-core'
-DataMapper.setup(:default, "sqlite3::memory")
+require  'dm-migrations'
+DataMapper.setup(:default, "sqlite3::memory:")
 
 class Image
   include DataMapper::Resource
   property :id,           Serial
   property :image_url,    Text
   property :flagged,       String
+  auto_migrate!
 
   after :create, :moderate_image
 

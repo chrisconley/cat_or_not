@@ -1,21 +1,18 @@
 !!!
 %html
   %head
-    %title Image Moderation Results
+    %title Houdini Sinatra Example
     %link{:rel=>'stylesheet', :href=>'/stylesheets/style.css', :type => "text/css"}
   %body
     .container
       .prepend-5.span-14.append-5.last
-        Image Moderations
+        %h1 Images
         %table
           %tr
             %th Image
             %th Offensive?
-            %th Created At
-            %th Finished At
-          - @gamuts.each_with_index do |gamut, row|
+          - @images.each_with_index do |gamut, row|
             %tr{:class => (row % 2) == 0 ? 'even' : ''}
-              %td= "<img src='#{gamut.image_url}' class='preview'>"
-              %td= gamut.offensive if gamut.offensive
-              %td= gamut.created_at.strftime('%m/%d %H:%M')
-              %td= gamut.finished_at.strftime('%m/%d %H:%M') if gamut.finished_at
+              %td
+                %img{:src => image.image_url, :class => 'preview'}
+              %td= image.flagged
