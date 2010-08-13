@@ -27,11 +27,11 @@ post '/images/:id/houdini_postbacks' do
 end
 
 require 'dm-core'
-DataMapper.setup(:default, ENV['DATABASE_URL'])
+DataMapper.setup(:default, "sqlite3::memory")
 
 class Image
   include DataMapper::Resource
-  property :id,           Integer, :serial=>true
+  property :id,           Serial
   property :image_url,    Text
   property :flagged,       String
 

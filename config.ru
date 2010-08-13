@@ -1,5 +1,8 @@
 require 'rubygems'
-require 'sinatra.rb'
+require 'bundler'
+Bundler.setup
+
+require 'sinatra'
 
 set :views, File.join(File.dirname(__FILE__), 'views')
 
