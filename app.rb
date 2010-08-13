@@ -36,9 +36,9 @@ DataMapper.setup(:default, "sqlite3::memory:")
 
 class Image
   include DataMapper::Resource
-  property :id,           Serial
-  property :image_url,    Text
-  property :flagged,       String
+  property :id,        Serial
+  property :image_url, Text
+  property :flagged,   String
   auto_migrate!
 
   after :create, :moderate_image
@@ -57,7 +57,6 @@ end
 
 require 'net/http'
 require 'uri'
-
 
 class Houdini
   class ApiKeyError < StandardError; end;
