@@ -41,14 +41,15 @@ class Image
   property :flagged,       String
   auto_migrate!
 
-  #after :create, :moderate_image
+  after :create, :moderate_image
 
   def moderate_image
-    Houdini.send_to_houdini({
+    Houdini.perform!({
       :api_key => 'YOUR_API_KEY',
+      :identifier => 'Sinatra Image Moderation',
       :price => '0.01',
       :title => "Please moderate the image for Frank Sinatra",
-      :form_html => Houdini.render_form(self, 'view/houdini_templates/image.html.erb'),
+      :form_html => Houdini.render_form(self, 'views/houdini_template.erb'),
       :postback_url => "http://houdini-sinatra-example.com/images/#{id}/houdini_postbacks"
     })
   end
@@ -57,12 +58,19 @@ end
 require 'net/http'
 require 'uri'
 
+
 class Houdini
-  def self.send_to_houdini(params)
-    url = URI.parse("http://houdinihq.com/api/v0/simple/tasks/")
+  class ApiKeyError < StandardError; end;
+
+  def self.perform!(params)
+    url = URI.parse("http://houdini-sandbox.heroku.com/api/v0/simple/tasks/")
     response, body = Net::HTTP.post_form(url, params)
+    puts body
+    raise(ApiKeyError, "invalid api key") if response.code == '403'
   end
 
   def self.render_form(object, template)
+    template = Tilt.new(template)
+    template.render(object, object.class.name.downcase.to_sym => object)
   end
 end
