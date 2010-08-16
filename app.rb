@@ -1,6 +1,8 @@
 require 'rubygems'
 require 'sinatra'
 
+HOUDINI_API_KEY = 'YOUR_API_KEY' # change me
+
 get '/' do
   redirect '/images'
 end
@@ -44,7 +46,7 @@ class Image
 
   def moderate_image
     Houdini.perform!({
-      :api_key => 'sandbox',
+      :api_key => HOUDINI_API_KEY,
       :identifier => 'Sinatra Image Moderation',
       :price => '0.01',
       :title => "Please moderate the image for Frank Sinatra",
