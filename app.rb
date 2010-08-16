@@ -26,7 +26,7 @@ end
 
 post '/images/:id/houdini_postbacks' do
   @image = Image.find(params[:id])
-  @image.flagged = params[:answer][:flagged]
+  @image.flagged = params[:flagged]
   @image.save!
 end
 
@@ -57,6 +57,7 @@ end
 
 require 'net/http'
 require 'uri'
+require 'haml'
 
 class Houdini
   class ApiKeyError < StandardError; end;

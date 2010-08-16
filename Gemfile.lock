@@ -54,6 +54,8 @@ GEM
     haml (3.0.16)
     json_pure (1.4.6)
     rack (1.2.1)
+    rack-test (0.5.4)
+      rack (>= 1.0)
     sinatra (1.0)
       rack (>= 1.0)
     stringex (1.1.0)
@@ -66,4 +68,5 @@ DEPENDENCIES
   datamapper
   dm-sqlite-adapter
   haml
+  rack-test
   sinatra
