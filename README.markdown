@@ -1,3 +1,8 @@
+Houdini Sinatra App
+================================
+This is a simple CRUD Sinatra app with Houdini Mechanical Turk API integration. The image is sent to Houdini for moderation in an after create callback on the Image model.
+
+
 Installation
 ================================
 
@@ -6,7 +11,7 @@ Installation
     gem install bundler -v 1.0.0.rc.5
     bundle install
 
-    Change "HOUDINI_API_KEY" constant in app.rb to your api key
+Lastly, you'll need to change the "HOUDINI_API_KEY" constant in app.rb to your api key. If you need an api key, please email us at presto@houdinihq.com.
 
 To run the app
 --------------------------------
