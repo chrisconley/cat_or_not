@@ -1,0 +1,27 @@
+<h1>Images</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Flagged?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @images.each_with_index do |image, row| %>
+      <tr class='<%= "hello" %>' id='<%= image.id %>'>
+        <td>
+          <img class='preview' src='<%= image.image_url %>' />
+        </td>
+        <td>
+          <%= image.flagged %>
+        </td>
+        <td></td>
+      </tr>
+
+    <% end %>
+  </tbody>
+</table>
+<p>
+
+  <a href='/images/new'>Create New Image</a>
+</p>

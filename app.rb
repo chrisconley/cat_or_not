@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'sinatra'
-require 'haml'
 
 get '/' do
   redirect '/images'
@@ -8,12 +7,12 @@ end
 
 get '/images' do
   @images = Image.all
-  haml :index
+  erb :index
 end
 
 get '/images/new' do
   @image = Image.new
-  haml :new
+  erb :new
 end
 
 post '/images' do
@@ -21,7 +20,7 @@ post '/images' do
   if @image.save
     redirect '/images'
   else
-    haml :new
+    erb :new
   end
 end
 
