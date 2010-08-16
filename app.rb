@@ -2,6 +2,8 @@ require 'rubygems'
 require 'sinatra'
 
 HOUDINI_API_KEY = 'YOUR_API_KEY' # change me
+SINATRA_HOST = 'http://your_domain.com' #change me (tunnlr.com is great for testing locally)
+HOUDINI_HOST = :sandbox # Work is not completed on sandbox. Use :production if you want responses to be returned
 
 get '/' do
   redirect '/images'
@@ -51,7 +53,7 @@ class Image
       :price => '0.01',
       :title => "Please moderate the image for Frank Sinatra",
       :form_html => Houdini.render_form(self, 'views/houdini_template.erb'),
-      :postback_url => "http://houdini-sinatra-example.com/images/#{id}/houdini_postbacks"
+      :postback_url => "#{SINATRA_HOST}/images/#{id}/houdini_postbacks"
     })
   end
 end
@@ -62,8 +64,10 @@ require 'uri'
 class Houdini
   class ApiKeyError < StandardError; end;
 
+  HOUDINI_URL = HOUDINI_HOST == :production ? 'http://houdinihq.com' : 'http://houdini-sandbox.heroku.com'
+
   def self.perform!(params)
-    url = URI.parse("http://houdini-sandbox.heroku.com/api/v0/simple/tasks/")
+    url = URI.parse("#{HOUDINI_URL}/api/v0/simple/tasks/")
     response, body = Net::HTTP.post_form(url, params)
     raise(ApiKeyError, "invalid api key") if response.code == '403'
   end

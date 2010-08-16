@@ -13,7 +13,7 @@ Installation
     gem install bundler -v 1.0.0.rc.5
     bundle install
 
-Lastly, you'll need to change the "HOUDINI_API_KEY" constant in app.rb to your api key. If you need an api key, please email us at presto@houdinihq.com.
+Lastly, you'll need to change the "HOUDINI_API_KEY" and "SINATRA_HOST" constants. If you need an api key, please email us at presto@houdinihq.com.
 
 To run the app
 --------------------------------
