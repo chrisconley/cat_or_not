@@ -1,22 +1,14 @@
-!!!
-%html
-  %head
-    %title Houdini Sinatra Example
-    %link{:rel=>'stylesheet', :href=>'/stylesheets/style.css', :type => "text/css"}
-  %body
-    .container
-      .prepend-5.span-14.append-5.last
-        %h1 Images
-        %table
-          %thead
-            %tr
-              %th Image
-              %th Flagged?
-          %tbody
-            - @images.each_with_index do |image, row|
-              %tr{:id => image.id, :class => (row % 2) == 0 ? 'even' : ''}
-                %td
-                  %img{:src => image.image_url, :class => 'preview'}
-                %td= image.flagged
-        %p
-          %a{:href => '/images/new'} Create New Image
+%h1 Images
+%table
+  %thead
+    %tr
+      %th Image
+      %th Flagged?
+  %tbody
+    - @images.each_with_index do |image, row|
+      %tr{:id => image.id, :class => (row % 2) == 0 ? 'even' : ''}
+        %td
+          %img{:src => image.image_url, :class => 'preview'}
+        %td= image.flagged
+%p
+  %a{:href => '/images/new'} Create New Image

@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'sinatra'
+require 'haml'
 
 get '/' do
   redirect '/images'
@@ -44,7 +45,7 @@ class Image
 
   def moderate_image
     Houdini.perform!({
-      :api_key => 'YOUR_API_KEY',
+      :api_key => 'sandbox',
       :identifier => 'Sinatra Image Moderation',
       :price => '0.01',
       :title => "Please moderate the image for Frank Sinatra",
@@ -56,7 +57,6 @@ end
 
 require 'net/http'
 require 'uri'
-require 'haml'
 
 class Houdini
   class ApiKeyError < StandardError; end;
@@ -64,7 +64,6 @@ class Houdini
   def self.perform!(params)
     url = URI.parse("http://houdini-sandbox.heroku.com/api/v0/simple/tasks/")
     response, body = Net::HTTP.post_form(url, params)
-    puts body
     raise(ApiKeyError, "invalid api key") if response.code == '403'
   end
 

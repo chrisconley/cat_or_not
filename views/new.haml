@@ -1,21 +1,9 @@
-!!! Strict
-%html{:lang => "en"}
-  %head
-    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
-      %title Blueprint Forms Tests
-      %link{:rel=>'stylesheet', :href=>'/stylesheets/style.css', :type => "text/css"}
-      /[if lt IE 8] <link rel="stylesheet" href="../../blueprint/ie.css" type="text/css" media="screen, projection">
-  %body
-    .container.showgrid
-      %h1 Images
-      %hr
-        .span-12.last
-          %form{:action => "/images", :method => "post"}
-            %fieldset
-              %legend New Image
-              %p
-                %label{:for => "image[image_url]"} Image URL
-                %br
-                  %input.title{:name => "image[image_url]", :type => "text"}/
-              %p
-                %input{:type => "submit", :value => "Submit"}
+%form{:action => "/images", :method => "post"}
+  %fieldset
+    %legend New Image
+    %p
+      %label{:for => "image[image_url]"} Image URL
+      %br
+        %input.title{:name => "image[image_url]", :type => "text"}/
+    %p
+      %input{:type => "submit", :value => "Submit"}
