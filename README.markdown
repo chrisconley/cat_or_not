@@ -19,7 +19,7 @@ To run the app
 --------------------------------
 
     cd houdini-sinatra-example
-    rackup
+    ruby app.rb
 
 To run the tests
 --------------------------------
