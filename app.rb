@@ -25,9 +25,8 @@ post '/images' do
 end
 
 post '/images/:id/houdini_postbacks' do
-  @image = Image.find(params[:id])
-  @image.flagged = params[:flagged]
-  @image.save!
+  @image = Image.get(params[:id])
+  @image.update(:flagged => params[:flagged])
 end
 
 require 'dm-core'

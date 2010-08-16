@@ -53,9 +53,12 @@ GEM
     fastercsv (1.5.3)
     haml (3.0.16)
     json_pure (1.4.6)
+    mocha (0.9.8)
+      rake
     rack (1.2.1)
     rack-test (0.5.4)
       rack (>= 1.0)
+    rake (0.8.7)
     sinatra (1.0)
       rack (>= 1.0)
     stringex (1.1.0)
@@ -68,5 +71,6 @@ DEPENDENCIES
   datamapper
   dm-sqlite-adapter
   haml
+  mocha
   rack-test
   sinatra
