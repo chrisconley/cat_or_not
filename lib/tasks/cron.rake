@@ -1,4 +1,3 @@
-desc "Migrate the database"
+desc "Example cron"
 task :cron do
-  Gamut.start
 end
