@@ -1,23 +1,18 @@
-require 'rubygems'
-require 'sinatra'
-require 'rack-flash'
-require 'image'
-
 class CatOrNot < Sinatra::Base
   enable :sessions
   use Rack::Flash
 
   get '/' do
-    @images = Image.all
+    @images = Image.all(:limit => 10, :order => [:id.desc])
     erb :index
   end
 
   post '/images' do
     @image = Image.new(params[:image])
     if @image.save
-      flash[:success] = "Thanks for submitting an image. It will show up just as soon as it has been reviewed by our staff."
+      flash[:notice] = "Thanks for submitting an image. It will show up just as soon as it has been reviewed by our staff."
     else
-      flash[:error] = "We're sorry, but there was an error in saving your image. Please try again."
+      flash[:notice] = "We're sorry, but there was an error in saving your image. Please try again."
     end
     redirect '/'
   end

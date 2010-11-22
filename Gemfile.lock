@@ -55,6 +55,8 @@ GEM
     mocha (0.9.8)
       rake
     rack (1.2.1)
+    rack-flash (0.1.1)
+      rack
     rack-test (0.5.4)
       rack (>= 1.0)
     rake (0.8.7)
@@ -70,5 +72,6 @@ DEPENDENCIES
   datamapper
   dm-sqlite-adapter
   mocha
+  rack-flash
   rack-test
   sinatra

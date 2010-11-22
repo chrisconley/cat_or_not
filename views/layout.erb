@@ -2,15 +2,16 @@
 <html lang='en'>
   <head>
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
-      <title>Houdini Sinatra Example</title>
+      <title>Cat or Not</title>
       <link href='/stylesheets/style.css' rel='stylesheet' type='text/css' />
     </meta>
   </head>
   <body>
 
     <div class='container showgrid'>
-      <h1>Houdini Sinatra Example</h1>
+      <h1>Cat or Not</h1>
       <hr />
+      <%= flash[:notice] %>
       <div class='prepend-5 span-14 append-5 last'>
         <%= yield %>
       </div>
