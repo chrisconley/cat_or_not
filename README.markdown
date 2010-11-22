@@ -8,9 +8,8 @@ If you'd like to run the app yourself, you can follow the directions below.
 Installation
 ================================
 
-    git clone git://github.com/chrisconley/houdini-sinatra-example.git
-    cd houdini-sinatra-example
-    gem install bundler -v 1.0.0.rc.5
+    git clone git://github.com/chrisconley/cat_or_not.git
+    cd cat_or_not
     bundle install
 
 Lastly, you'll need to change the "HOUDINI_API_KEY" and "SINATRA_HOST" constants. If you need an api key, please email us at presto@houdinihq.com.
@@ -18,12 +17,10 @@ Lastly, you'll need to change the "HOUDINI_API_KEY" and "SINATRA_HOST" constants
 To run the app
 --------------------------------
 
-    cd houdini-sinatra-example
-    ruby app.rb
+    rackup
 
 To run the tests
 --------------------------------
 
-    cd houdini-sinatra-example
-    ruby test.rb
+    bundle exec ruby test.rb
 

@@ -1,4 +1,6 @@
 class CatOrNot < Sinatra::Base
+  helpers Sinatra::UrlForHelper
+  register Sinatra::StaticAssets
   enable :sessions
   use Rack::Flash
 
@@ -21,5 +23,4 @@ class CatOrNot < Sinatra::Base
     @image = Image.get(params[:id])
     @image.update(:flagged => params[:flagged])
   end
-
 end

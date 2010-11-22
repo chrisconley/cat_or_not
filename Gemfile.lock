@@ -49,6 +49,8 @@ GEM
       dm-core (~> 1.0.0)
     do_sqlite3 (0.10.2)
       data_objects (= 0.10.2)
+    emk-sinatra-url-for (0.2.1)
+      sinatra (>= 0.9.1.1)
     extlib (0.9.15)
     fastercsv (1.5.3)
     json_pure (1.4.6)
@@ -62,6 +64,10 @@ GEM
     rake (0.8.7)
     sinatra (1.0)
       rack (>= 1.0)
+    sinatra-static-assets (0.5.0)
+      emk-sinatra-url-for (>= 0.2.1)
+      rack (>= 1.0.0)
+      sinatra (>= 0.9.1)
     stringex (1.1.0)
     uuidtools (2.1.1)
 
@@ -71,7 +77,9 @@ PLATFORMS
 DEPENDENCIES
   datamapper
   dm-sqlite-adapter
+  emk-sinatra-url-for
   mocha
   rack-flash
   rack-test
   sinatra
+  sinatra-static-assets

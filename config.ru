@@ -3,6 +3,7 @@ require 'bundler'
 Bundler.setup
 
 require 'sinatra'
+require 'sinatra/static_assets'
 require 'rack-flash'
 
 set :views, File.join(File.dirname(__FILE__), 'views')
@@ -12,6 +13,12 @@ require 'dm-migrations'
 require 'dm-validations'
 DataMapper.setup(:default, "sqlite3::memory:")
 
+require 'net/http'
+require 'uri'
+
 require 'app'
 require 'image'
+
+use Rack::Static, :urls => ["/stylesheets"], :root => "public"
+
 run CatOrNot
