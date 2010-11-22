@@ -1,79 +1,30 @@
 require 'rubygems'
 require 'sinatra'
+require 'rack-flash'
+require 'image'
 
-HOUDINI_API_KEY = 'YOUR_API_KEY' # change me
-SINATRA_HOST = 'http://your_domain.com' #change me (tunnlr.com is great for testing locally)
-HOUDINI_HOST = :sandbox # Work is not completed on sandbox. Use :production if you want responses to be returned
+class CatOrNot < Sinatra::Base
+  enable :sessions
+  use Rack::Flash
 
-get '/' do
-  redirect '/images'
-end
-
-get '/images' do
-  @images = Image.all
-  erb :index
-end
-
-get '/images/new' do
-  @image = Image.new
-  erb :new
-end
-
-post '/images' do
-  @image = Image.new(params[:image])
-  if @image.save
-    redirect '/images'
-  else
-    erb :new
-  end
-end
-
-post '/images/:id/houdini_postbacks' do
-  @image = Image.get(params[:id])
-  @image.update(:flagged => params[:flagged])
-end
-
-require 'dm-core'
-require  'dm-migrations'
-DataMapper.setup(:default, "sqlite3::memory:")
-
-class Image
-  include DataMapper::Resource
-  property :id,        Serial
-  property :image_url, Text
-  property :flagged,   String
-  auto_migrate!
-
-  after :create, :moderate_image
-
-  def moderate_image
-    Houdini.perform!({
-      :api_key => HOUDINI_API_KEY,
-      :identifier => 'Sinatra Image Moderation',
-      :price => '0.01',
-      :title => "Please moderate the image for Frank Sinatra",
-      :form_html => Houdini.render_form(self, 'views/houdini_template.erb'),
-      :postback_url => "#{SINATRA_HOST}/images/#{id}/houdini_postbacks"
-    })
-  end
-end
-
-require 'net/http'
-require 'uri'
-
-class Houdini
-  class ApiKeyError < StandardError; end;
-
-  HOUDINI_URL = HOUDINI_HOST == :production ? 'http://houdinihq.com' : 'http://houdini-sandbox.heroku.com'
-
-  def self.perform!(params)
-    url = URI.parse("#{HOUDINI_URL}/api/v0/simple/tasks/")
-    response, body = Net::HTTP.post_form(url, params)
-    raise(ApiKeyError, "invalid api key") if response.code == '403'
+  get '/' do
+    @images = Image.all
+    erb :index
   end
 
-  def self.render_form(object, template)
-    template = Tilt.new(template)
-    template.render(object, object.class.name.downcase.to_sym => object)
+  post '/images' do
+    @image = Image.new(params[:image])
+    if @image.save
+      flash[:success] = "Thanks for submitting an image. It will show up just as soon as it has been reviewed by our staff."
+    else
+      flash[:error] = "We're sorry, but there was an error in saving your image. Please try again."
+    end
+    redirect '/'
   end
+
+  post '/images/:id/houdini_postbacks' do
+    @image = Image.get(params[:id])
+    @image.update(:flagged => params[:flagged])
+  end
+
 end

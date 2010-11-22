@@ -27,7 +27,7 @@ class AppTest < Test::Unit::TestCase
   end
 
   def test_list_of_images
-    create_image(:image_url => 'http://example.com/image.jpg', :flagged => "yes")
+    create_image(:url => 'http://example.com/image.jpg', :flagged => "yes")
     get '/images'
     assert last_response.body.include?('Create New Image')
     assert last_response.body.include?('http://example.com/image.jpg')
@@ -41,13 +41,13 @@ class AppTest < Test::Unit::TestCase
 
   def test_create_image
     Houdini.stubs(:perform!)
-    post '/images', :image => {:image_url => 'http://example.com/image.jpg'}
+    post '/images', :image => {:url => 'http://example.com/image.jpg'}
     assert_equal 1, Image.count
-    assert_equal Image.first.image_url, 'http://example.com/image.jpg'
+    assert_equal Image.first.url, 'http://example.com/image.jpg'
   end
 
   def test_houdini_postback
-    create_image(:image_url => 'http://example.com/image.jpg', :flagged => nil)
+    create_image(:url => 'http://example.com/image.jpg', :flagged => nil)
     post '/images/1/houdini_postbacks', :flagged => 'yes'
     assert_equal 'yes', Image.first.flagged
   end
