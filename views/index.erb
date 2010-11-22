@@ -1,8 +1,8 @@
 <form action='/images' method='post'>
   <p>
-      <input class='title' name='image[url]' type='text' />
+      <input class='title' name='image[url]' type='text' value="http://" />
       <br/>
-      <span class="info">Submit the url of your favorite cat picture</span>
+      <span class="info">Submit the url of your favorite lolcat</span>
   </p>
   <p>
     <input type='submit' value='Submit' />
@@ -12,12 +12,10 @@
   <hr>
   <img src='<%= image.url %>' width="400px"/>
   <form action='/images' method='post'>
-    <label>Not&nbsp;&nbsp;&nbsp;</label>
     <input type="radio" value="1"><label>1</label>
     <input type="radio" value="2"><label>2</label>
     <input type="radio" value="3"><label>3</label>
     <input type="radio" value="4"><label>4</label>
     <input type="radio" value="5"><label>5</label>
-    <label>&nbsp;&nbsp;&nbsp;Cat</label>
   </form>
 <% end %>

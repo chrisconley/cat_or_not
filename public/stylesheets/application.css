@@ -22,6 +22,7 @@ form label {
 
 form input {
   font-size:3em;
+  color:#3D473E;
 }
 
 form input.title {
@@ -29,7 +30,7 @@ form input.title {
   width:500px;
 }
 
-p span.info {
+p span.info, p.notice {
   font-family:Arial;
   font-size:14px;
 }

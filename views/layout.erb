@@ -10,7 +10,9 @@
 
     <div class='container showgrid'>
       <h1>Cat or <span>Not</span></h1>
-      <%= flash[:notice] %>
+      <% if flash[:notice] %>
+        <p class="notice"><%= flash[:notice] %></p>
+      <% end %>
       <div class='prepend-5 span-14 append-5 last'>
         <%= yield %>
       </div>
