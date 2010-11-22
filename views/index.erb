@@ -15,25 +15,15 @@
   </fieldset>
 </form>
 <h1>Images</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th>Flagged?</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @images.each_with_index do |image, row| %>
-      <tr class='<%= "hello" %>' id='<%= image.id %>'>
-        <td>
-          <img class='preview' src='<%= image.url %>' />
-        </td>
-        <td>
-          <%= image.flagged %>
-        </td>
-        <td></td>
-      </tr>
-
-    <% end %>
-  </tbody>
-</table>
+<% @images.each_with_index do |image, row| %>
+  <img class='preview' src='<%= image.url %>' />
+  <form action='/images' method='post'>
+    Not
+    <input type="radio" value="1">1
+    <input type="radio" value="2">2
+    <input type="radio" value="3">3
+    <input type="radio" value="4">4
+    <input type="radio" value="5">5
+    Cat
+  </form>
+<% end %>
