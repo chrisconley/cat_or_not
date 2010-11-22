@@ -3,7 +3,7 @@ class Image
   property :id,        Serial
   property :url,       Text,   :required => true, :format => :url
   property :flagged,   String
-  auto_migrate!
+  auto_upgrade!
 
   after :create, :moderate_image
 

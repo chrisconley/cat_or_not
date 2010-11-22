@@ -1,0 +1,44 @@
+body {
+  text-align:center;
+  font-family:"Impact";
+  color:#3D473E;
+}
+h1, h2, h3, h4, h5, h6 {color:#3D473E;}
+
+h1 {
+  font-size:5em;
+  font-weight:normal;
+  margin-bottom:0em;
+}
+
+h1 span {
+  color:#BA3C51;
+}
+
+form label {
+  font-size:2em;
+  font-weight:normal;
+}
+
+form input {
+  font-size:3em;
+}
+
+form input.title {
+  font-size:3em;
+  width:500px;
+}
+
+p span.info {
+  font-family:Arial;
+  font-size:14px;
+}
+
+input[type="radio"] {
+  top:0em;
+}
+
+img {
+  padding:1px;
+  border:1px solid #ccc;
+}

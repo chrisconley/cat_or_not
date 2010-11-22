@@ -3,14 +3,13 @@
   <head>
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
       <title>Cat or Not</title>
-      <%= stylesheet_link_tag "stylesheets/style.css" %>
+      <%= stylesheet_link_tag "stylesheets/style.css", "stylesheets/application.css" %>
     </meta>
   </head>
   <body>
 
     <div class='container showgrid'>
-      <h1>Cat or Not</h1>
-      <hr />
+      <h1>Cat or <span>Not</span></h1>
       <%= flash[:notice] %>
       <div class='prepend-5 span-14 append-5 last'>
         <%= yield %>

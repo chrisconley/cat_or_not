@@ -1,29 +1,23 @@
 <form action='/images' method='post'>
-  <fieldset>
-    <legend>New Image</legend>
-    <p>
-
-      <label for='image[url]'>Image URL</label>
-      <br>
-        <input class='title' name='image[url]' type='text' />
-      </br>
-    </p>
-    <p>
-      <input type='submit' value='Submit' />
-    </p>
-
-  </fieldset>
+  <p>
+      <input class='title' name='image[url]' type='text' />
+      <br/>
+      <span class="info">Submit the url of your favorite cat picture</span>
+  </p>
+  <p>
+    <input type='submit' value='Submit' />
+  </p>
 </form>
-<h1>Images</h1>
 <% @images.each_with_index do |image, row| %>
-  <img class='preview' src='<%= image.url %>' />
+  <hr>
+  <img src='<%= image.url %>' width="400px"/>
   <form action='/images' method='post'>
-    Not
-    <input type="radio" value="1">1
-    <input type="radio" value="2">2
-    <input type="radio" value="3">3
-    <input type="radio" value="4">4
-    <input type="radio" value="5">5
-    Cat
+    <label>Not&nbsp;&nbsp;&nbsp;</label>
+    <input type="radio" value="1"><label>1</label>
+    <input type="radio" value="2"><label>2</label>
+    <input type="radio" value="3"><label>3</label>
+    <input type="radio" value="4"><label>4</label>
+    <input type="radio" value="5"><label>5</label>
+    <label>&nbsp;&nbsp;&nbsp;Cat</label>
   </form>
 <% end %>

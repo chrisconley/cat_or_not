@@ -11,7 +11,13 @@ set :views, File.join(File.dirname(__FILE__), 'views')
 require 'dm-core'
 require 'dm-migrations'
 require 'dm-validations'
-DataMapper.setup(:default, "sqlite3::memory:")
+DataMapper.setup(:default, {
+  :adapter  => 'sqlite3',
+  :host     => 'localhost',
+  :username => '',
+  :password => '',
+  :database => 'db/cat_or_not'
+})
 
 require 'net/http'
 require 'uri'
