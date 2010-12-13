@@ -61,6 +61,9 @@ GEM
       rack
     rack-test (0.5.4)
       rack (>= 1.0)
+    racksh (0.9.8)
+      rack (>= 1.0)
+      rack-test (>= 0.5)
     rake (0.8.7)
     sinatra (1.0)
       rack (>= 1.0)
@@ -81,5 +84,6 @@ DEPENDENCIES
   mocha
   rack-flash
   rack-test
+  racksh
   sinatra
   sinatra-static-assets
