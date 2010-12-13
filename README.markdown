@@ -12,12 +12,17 @@ Installation
     cd cat_or_not
     bundle install
 
-Lastly, you'll need to change the "HOUDINI_API_KEY" and "SINATRA_HOST" constants. If you need an api key, please email us at presto@houdinihq.com.
+Next, you'll need to change the following constants in config.ru:
+
+* HOUDINI_API_KEY: If you need an api key, you can sign up at houdiniapi.com/sign-up.
+* APP_HOST: The domain that Houdini will post answers back to. (Check out tunnlr.com for testing locally.)
 
 To run the app
 --------------------------------
 
     rackup
+
+And start up tunnlr to receive postbacks from Houdini if testing locally.
 
 To run the tests
 --------------------------------

@@ -22,7 +22,8 @@ DataMapper.setup(:default, {
 require 'net/http'
 require 'uri'
 
-::MY_API_KEY = ''
+::HOUDINI_API_KEY = 'Changeme'
+::APP_HOST = "Changeme"
 require 'app'
 require 'image'
 
