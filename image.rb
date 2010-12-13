@@ -16,7 +16,6 @@ class Image
       :instructions => "Does this picture contain any cats?",
       :possible_answers => "{'yes':'Yes', 'no':'No'}"
     })
-    puts response.code
     puts body
   end
 end

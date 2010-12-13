@@ -1,4 +1,3 @@
-require 'app'
 require 'test/unit'
 require 'mocha'
 require 'rack/test'
@@ -9,46 +8,38 @@ class AppTest < Test::Unit::TestCase
   include Rack::Test::Methods
 
   def app
-    Sinatra::Application
+    eval "Rack::Builder.new {( " + File.read(File.dirname(__FILE__) + '/config.ru') + "\n )}"
   end
 
   def create_image(params)
-    image = Image.new(params)
-    image.expects(:moderate_image)
-    image.save
+    @image = ::Image.new(params)
+    @image.expects(:moderate_image)
+    @image.save
   end
 
-  def test_root_redirects_to_images
-    get "/"
-    follow_redirect!
-
-    assert_match /\/images$/, last_request.url
-    assert last_response.ok?
-  end
-
-  def test_list_of_images
-    create_image(:url => 'http://example.com/image.jpg', :flagged => "yes")
-    get '/images'
-    assert last_response.body.include?('Create New Image')
+  def test_home_page
+    create_image(:url => 'http://example.com/image.jpg', :is_cat => "yes")
+    get '/'
+    assert last_response.body.include?('Submit the url of your favorite lolcat')
     assert last_response.body.include?('http://example.com/image.jpg')
-    assert last_response.body.include?('yes')
-  end
-
-  def test_new_image
-    get '/images/new'
-    assert last_response.body.include?('New Image')
+  ensure
+    ::Image.destroy
   end
 
   def test_create_image
-    Houdini.stubs(:perform!)
+    Net::HTTP.stubs(:post_form)
     post '/images', :image => {:url => 'http://example.com/image.jpg'}
-    assert_equal 1, Image.count
-    assert_equal Image.first.url, 'http://example.com/image.jpg'
+    assert_equal 1, ::Image.count
+    assert_equal ::Image.first.url, 'http://example.com/image.jpg'
+  ensure
+    ::Image.destroy
   end
 
   def test_houdini_postback
-    create_image(:url => 'http://example.com/image.jpg', :flagged => nil)
-    post '/images/1/houdini_postbacks', :flagged => 'yes'
-    assert_equal 'yes', Image.first.flagged
+    create_image(:url => 'http://example.com/image.jpg', :is_cat => nil)
+    post "/images/#{@image.id}/houdini_postbacks", :answer => 'yes'
+    assert_equal 'yes', ::Image.first.is_cat
+  ensure
+    ::Image.destroy
   end
 end
