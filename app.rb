@@ -1,3 +1,6 @@
+require 'rubygems' if RUBY_VERSION < "1.9"
+require 'sinatra'
+
 class CatOrNot < Sinatra::Base
   helpers Sinatra::UrlForHelper
   register Sinatra::StaticAssets
@@ -5,7 +8,7 @@ class CatOrNot < Sinatra::Base
   use Rack::Flash
 
   get '/' do
-    @images = Image.all(:limit => 10, :order => [:id.desc])
+    @images = Image.all(:is_cat => 'yes', :limit => 10, :order => [:id.desc])
     erb :index
   end
 
@@ -20,7 +23,8 @@ class CatOrNot < Sinatra::Base
   end
 
   post '/images/:id/houdini_postbacks' do
+    puts params.inspect
     @image = Image.get(params[:id])
-    @image.update(:flagged => params[:flagged])
+    @image.update(:is_cat => params[:answer])
   end
 end

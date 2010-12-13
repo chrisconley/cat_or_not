@@ -22,6 +22,7 @@ DataMapper.setup(:default, {
 require 'net/http'
 require 'uri'
 
+::MY_API_KEY = ''
 require 'app'
 require 'image'
 
